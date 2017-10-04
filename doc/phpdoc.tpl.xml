@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Lyssal Doctrine ORM library</title>
+    <parser>
+        <target>api/parser</target>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+        </extensions>
+    </parser>
+    <transformer>
+        <target>api</target>
+    </transformer>
+    <logging>
+        <level>notice</level>
+        <paths>
+            <default>{APP_ROOT}/doc/log/{DATE}.log</default>
+            <errors>{APP_ROOT}/doc/log/{DATE}.errors.log</errors>
+        </paths>
+    </logging>
+    <files>
+        <directory>../src/Lyssal</directory>
+    </files>
+</phpdoc>

@@ -1,0 +1,21 @@
+{
+    "name": "lyssal/doctrine-orm",
+    "description": "Extensions for the Doctrine ORM library ; more cool functions in the Doctrine repositories and managers.",
+	"license" : "proprietary",
+    "keywords": ["doctrine", "orm", "repository", "manager"],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Rémi Leclerc",
+            "homepage": "http://www.lyssal.com/"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "~2.5",
+        "lyssal/lib-php": "~0.2",
+        "lyssal/entity": "~0.1"
+    },
+    "autoload":     {
+        "psr-0": { "Lyssal\\Doctrine\\Orm": "src" }
+    }
+}
