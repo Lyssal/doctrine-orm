@@ -96,18 +96,15 @@ class EntityManager
 
     /**
      * Get one entity.
+     * The extras parameters are not managed because of the LIMIT with JOINs.
      *
      * @param array $conditions The conditions of the search
      * @param array $orderBy    The order of the results
-     * @param array $extras     The extras
+     *
      * @return object|null The entity or NULL if not found
      */
-    public function findOneBy(array $conditions, array $orderBy = null, $extras = array())
+    public function findOneBy(array $conditions, array $orderBy = null)
     {
-        if (count($extras) > 0) {
-            return $this->getRepository()->getQueryBuilderFindBy($conditions, $orderBy, 1, null, $extras)->getQuery()->getOneOrNullResult();
-        }
-
         return $this->getRepository()->findOneBy($conditions, $orderBy);
     }
 
