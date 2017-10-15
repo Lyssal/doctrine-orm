@@ -121,10 +121,9 @@ class EntityManager
      */
     public function findOneById($id, $extras = array())
     {
-        $identifierFieldName = $this->getSingleIdentifierFieldName();
-
         if (count($extras) > 0) {
-            return $this->getRepository()->getQueryBuilderFindBy(array($identifierFieldName => $id), null, 1, null, $extras)->getQuery()->getOneOrNullResult();
+            $identifierFieldName = $this->getSingleIdentifierFieldName();
+            return $this->getRepository()->getQueryBuilderFindBy(array($identifierFieldName => $id), null, null, null, $extras)->getQuery()->getOneOrNullResult();
         }
 
         return $this->entityManager->find($this->class, $id);
