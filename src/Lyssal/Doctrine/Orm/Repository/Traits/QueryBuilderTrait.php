@@ -132,7 +132,7 @@ trait QueryBuilderTrait
      *
      * @param \Doctrine\ORM\QueryBuilder $queryBuilder      The query builder
      * @param string|int                 $conditionProperty The condition property name
-     * @param string|array               $conditionValue    The value(s) of the condition
+     * @param string|array|null          $conditionValue    The value(s) of the condition
      * @return mixed The condition
      * @throws \Lyssal\Doctrine\Orm\Exception\OrmException If the condition value is not valid
      */
@@ -210,6 +210,10 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::WHERE_NULL === $conditionProperty) {
             return call_user_func_array(array($queryBuilder->expr(), 'isNull'), array($this->getCompleteProperty($conditionValue)));
+        }
+
+        if (null === $conditionValue) {
+            return call_user_func_array(array($queryBuilder->expr(), 'isNull'), array($this->getCompleteProperty($conditionProperty)));
         }
 
         if (LyssalQueryBuilder::WHERE_NOT_NULL === $conditionProperty) {
