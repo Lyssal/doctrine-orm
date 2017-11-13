@@ -76,19 +76,23 @@ class EntityRepository extends DoctrineEntityRepository
     /**
      * Get the entities count.
      *
-     * @param \Doctrine\ORM\Mapping\ClassMetadata|null The class
+     * @param array $conditions The conditions
+     *
      * @return int The entities count
      */
-    public function count($class = null)
+    public function count(array $conditions = [])
     {
-        if (null === $class) {
-            $class = $this->getClassName();
-        }
+        $class = $this->getClassName();
 
         $queryBuilder =
             $this->_em->createQueryBuilder()
             ->select('COUNT(entity)')
             ->from($class, 'entity')
+        ;
+
+        $this
+            ->processQueryBuilderConditions($queryBuilder, $conditions)
+            ->processQueryBuilderHavings($queryBuilder, $conditions)
         ;
 
         return (int) $queryBuilder->getQuery()->getSingleScalarResult();

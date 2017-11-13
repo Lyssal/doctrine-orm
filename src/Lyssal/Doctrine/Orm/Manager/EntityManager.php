@@ -216,11 +216,13 @@ class EntityManager
     /**
      * Get the entities count.
      *
+     * @param array $conditions The conditions
+     *
      * @return int The entities count
      */
-    public function count()
+    public function count(array $conditions = [])
     {
-        return $this->getRepository()->count();
+        return $this->getRepository()->count($conditions);
     }
 
     /**
