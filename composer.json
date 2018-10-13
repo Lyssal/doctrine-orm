@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "doctrine/orm": "~2.5",
+        "doctrine/orm": "~2.6",
         "lyssal/lib-php": "~0.2",
         "lyssal/entity": "~0.1"
     },
