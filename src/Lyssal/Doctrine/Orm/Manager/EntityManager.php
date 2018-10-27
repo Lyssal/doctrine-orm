@@ -100,12 +100,13 @@ class EntityManager
      *
      * @param array $conditions The conditions of the search
      * @param array $orderBy    The order of the results
+     * @param array $extras     The extras (see the documentation for more informations)
      *
      * @return object|null The entity or NULL if not found
      */
-    public function findOneBy(array $conditions, array $orderBy = null)
+    public function findOneBy(array $conditions, array $orderBy = null, array $extras = array())
     {
-        return $this->getRepository()->findOneBy($conditions, $orderBy);
+        return $this->getRepository()->getQueryBuilderFindBy($conditions, $orderBy, 1, null, $extras)->getQuery()->getOneOrNullResult();
     }
 
     /**
