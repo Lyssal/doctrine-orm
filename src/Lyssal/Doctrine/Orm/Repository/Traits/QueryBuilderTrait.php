@@ -197,7 +197,7 @@ trait QueryBuilderTrait
             }
         }
 
-        if (in_array($conditionProperty, array(LyssalQueryBuilder::WHERE_EQUAL, LyssalQueryBuilder::WHERE_LESS, LyssalQueryBuilder::WHERE_LESS_OR_EQUAL, LyssalQueryBuilder::WHERE_GREATER, LyssalQueryBuilder::WHERE_GREATER_OR_EQUAL))) {
+        if (in_array($conditionProperty, array(LyssalQueryBuilder::WHERE_EQUAL, LyssalQueryBuilder::WHERE_NOT_EQUAL, LyssalQueryBuilder::WHERE_LESS, LyssalQueryBuilder::WHERE_LESS_OR_EQUAL, LyssalQueryBuilder::WHERE_GREATER, LyssalQueryBuilder::WHERE_GREATER_OR_EQUAL))) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
                 throw new OrmException('The condition value of an LyssalQueryBuilder::EQUAL must be an associative array with only one value.');
             }
@@ -321,6 +321,8 @@ trait QueryBuilderTrait
             case LyssalQueryBuilder::WHERE_EQUAL:
             case LyssalQueryBuilder::HAVING_EQUAL:
                 return '=';
+            case LyssalQueryBuilder::WHERE_NOT_EQUAL:
+                return '!=';
             case LyssalQueryBuilder::WHERE_LESS:
             case LyssalQueryBuilder::HAVING_LESS:
                 return '<';

@@ -78,6 +78,11 @@ class QueryBuilder
     const WHERE_EQUAL = '__WHERE_EQUAL__';
 
     /**
+     * @var string For a x != y
+     */
+    const WHERE_NOT_EQUAL = '__WHERE_NOT_EQUAL__';
+
+    /**
      * @var string For a x < y
      */
     const WHERE_LESS = '__WHERE_LESS__';
