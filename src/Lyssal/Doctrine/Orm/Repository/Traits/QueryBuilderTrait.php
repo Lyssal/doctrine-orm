@@ -64,7 +64,7 @@ trait QueryBuilderTrait
     {
         if (array_key_exists(LyssalQueryBuilder::SELECTS, $extras)) {
             if (!is_array($extras[LyssalQueryBuilder::SELECTS])) {
-                throw new OrmException('The LyssalQueryBuilder::SELECTS parameter must be an array.');
+                throw new OrmException('The SELECTS parameter must be an array.');
             }
             foreach ($extras[LyssalQueryBuilder::SELECTS] as $select => $selectAlias) {
                 if (LyssalQueryBuilder::SELECT_JOIN === $selectAlias) {
@@ -77,7 +77,7 @@ trait QueryBuilderTrait
 
         if (array_key_exists(LyssalQueryBuilder::LEFT_JOINS, $extras)) {
             if (!is_array($extras[LyssalQueryBuilder::LEFT_JOINS])) {
-                throw new OrmException('The LyssalQueryBuilder::LEFT_JOINS parameter must be an array.');
+                throw new OrmException('The LEFT_JOINS parameter must be an array.');
             }
             foreach ($extras[LyssalQueryBuilder::LEFT_JOINS] as $leftJoin => $leftJoinAlias) {
                 $queryBuilder->leftJoin($this->getCompleteProperty($leftJoin), $leftJoinAlias);
@@ -86,7 +86,7 @@ trait QueryBuilderTrait
 
         if (array_key_exists(LyssalQueryBuilder::INNER_JOINS, $extras)) {
             if (!is_array($extras[LyssalQueryBuilder::INNER_JOINS])) {
-                throw new OrmException('The LyssalQueryBuilder::INNER_JOINS parameter must be an array.');
+                throw new OrmException('The INNER_JOINS parameter must be an array.');
             }
             foreach ($extras[LyssalQueryBuilder::INNER_JOINS] as $innerJoin => $innerJoinAlias) {
                 $queryBuilder->innerJoin($this->getCompleteProperty($innerJoin), $innerJoinAlias);
@@ -95,7 +95,7 @@ trait QueryBuilderTrait
 
         if (array_key_exists(LyssalQueryBuilder::GROUP_BYS, $extras)) {
             if (!is_array($extras[LyssalQueryBuilder::GROUP_BYS])) {
-                throw new OrmException('The LyssalQueryBuilder::GROUP_BYS parameter must be an array.');
+                throw new OrmException('The GROUP_BYS parameter must be an array.');
             }
             foreach ($extras[LyssalQueryBuilder::GROUP_BYS] as $groupBy) {
                 if (array_key_exists(LyssalQueryBuilder::SELECTS, $extras) && in_array($groupBy, array_values($extras[LyssalQueryBuilder::SELECTS]), true)) {
@@ -149,7 +149,7 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::OR_WHERE === $conditionProperty) {
             if (!is_array($conditionValue)) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::OR_WHERE must be an associative array.');
+                throw new OrmException('The condition value of an OR_WHERE must be an associative array.');
             }
             $conditionsOr = array();
             foreach ($conditionValue as $conditionOrPropriete => $conditionOrValeur) {
@@ -160,7 +160,7 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::AND_WHERE === $conditionProperty) {
             if (!is_array($conditionValue)) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::AND_WHERE must be an associative array.');
+                throw new OrmException('The condition value of an AND_WHERE must be an associative array.');
             }
             $conditionsAnd = array();
             foreach ($conditionValue as $conditionOrPropriete => $conditionOrValeur) {
@@ -171,7 +171,7 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::WHERE_LIKE === $conditionProperty) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::WHERE_LIKE must be an associative array with only one value.');
+                throw new OrmException('The condition value of an WHERE_LIKE must be an associative array with one value.');
             }
             foreach ($conditionValue as $likePropriete => $likeValeur) {
                 $conditionValueLabel = $this->addParameterInQueryBuilder($queryBuilder, $likeValeur);
@@ -181,7 +181,7 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::WHERE_IN === $conditionProperty) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::WHERE_IN must be an associative array with only one value.');
+                throw new OrmException('The condition value of an WHERE_IN must be an associative array with one value.');
             }
             foreach ($conditionValue as $inPropriete => $inValeur) {
                 return call_user_func_array(array($queryBuilder->expr(), 'in'), array($this->getCompleteProperty($inPropriete), $inValeur));
@@ -190,7 +190,7 @@ trait QueryBuilderTrait
 
         if (LyssalQueryBuilder::WHERE_NOT_IN === $conditionProperty) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::WHERE_NOT_IN must be an associative array with only one value.');
+                throw new OrmException('The condition value of an WHERE_NOT_IN must be an associative array with one value.');
             }
             foreach ($conditionValue as $notInPropriete => $notInValeur) {
                 return call_user_func_array(array($queryBuilder->expr(), 'notIn'), array($this->getCompleteProperty($notInPropriete), $notInValeur));
@@ -199,7 +199,7 @@ trait QueryBuilderTrait
 
         if (in_array($conditionProperty, array(LyssalQueryBuilder::WHERE_EQUAL, LyssalQueryBuilder::WHERE_NOT_EQUAL, LyssalQueryBuilder::WHERE_LESS, LyssalQueryBuilder::WHERE_LESS_OR_EQUAL, LyssalQueryBuilder::WHERE_GREATER, LyssalQueryBuilder::WHERE_GREATER_OR_EQUAL))) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
-                throw new OrmException('The condition value of an LyssalQueryBuilder::EQUAL must be an associative array with only one value.');
+                throw new OrmException('The condition value of an { WHERE_EQUAL | WHERE_NOT_EQUAL | WHERE_LESS | WHERE_LESS_OR_EQUAL | WHERE_GREATER | WHERE_GREATER_OR_EQUAL } must be an associative array with one value.');
             }
 
             foreach ($conditionValue as $property => $value) {
@@ -282,7 +282,7 @@ trait QueryBuilderTrait
 
         if (in_array($conditionProperty, array(LyssalQueryBuilder::HAVING_EQUAL, LyssalQueryBuilder::HAVING_LESS, LyssalQueryBuilder::HAVING_LESS_OR_EQUAL, LyssalQueryBuilder::HAVING_GREATER, LyssalQueryBuilder::HAVING_GREATER_OR_EQUAL), true)) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
-                throw new OrmException('The condition of an EntityRepository:HAVING_* value must be an associative array with only one value.');
+                throw new OrmException('The condition of an { HAVING_LESS | HAVING_LESS_OR_EQUAL | HAVING_GREATER | HAVING_GREATER_OR_EQUAL } value must be an associative array with only one value.');
             }
             foreach ($conditionValue as $property => $value) {
                 $conditionValueLabel = $this->addParameterInQueryBuilder($queryBuilder, $value);
