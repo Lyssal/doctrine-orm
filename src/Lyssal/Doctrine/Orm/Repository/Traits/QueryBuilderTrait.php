@@ -66,13 +66,15 @@ trait QueryBuilderTrait
             if (!is_array($extras[LyssalQueryBuilder::SELECTS])) {
                 throw new OrmException('The SELECTS parameter must be an array.');
             }
+            $selects = [];
             foreach ($extras[LyssalQueryBuilder::SELECTS] as $select => $selectAlias) {
                 if (LyssalQueryBuilder::SELECT_JOIN === $selectAlias) {
-                    $queryBuilder->addSelect($select);
+                    $selects[] = $select;
                 } else {
-                    $queryBuilder->addSelect($this->getCompleteProperty($select).' AS '.$selectAlias);
+                    $selects[] = $this->getCompleteProperty($select).' AS '.$selectAlias;
                 }
             }
+            $queryBuilder->select($selects);
         }
 
         if (array_key_exists(LyssalQueryBuilder::LEFT_JOINS, $extras)) {
