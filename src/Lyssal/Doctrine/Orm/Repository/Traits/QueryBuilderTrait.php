@@ -68,8 +68,8 @@ trait QueryBuilderTrait
             }
             $selects = [];
             foreach ($extras[LyssalQueryBuilder::SELECTS] as $select => $selectAlias) {
-                if (LyssalQueryBuilder::SELECT_JOIN === $selectAlias) {
-                    $selects[] = $select;
+                if (is_int($select)) {
+                    $selects[] = $selectAlias;
                 } else {
                     $selects[] = $this->getCompleteProperty($select).' AS '.$selectAlias;
                 }

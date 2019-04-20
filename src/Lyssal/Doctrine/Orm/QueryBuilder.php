@@ -13,6 +13,11 @@ namespace Lyssal\Doctrine\Orm;
 class QueryBuilder
 {
     /**
+     * @var string The entity alias
+     */
+    const ALIAS = 'entity';
+
+    /**
      * @var string Extra for addSelect()
      */
     const SELECTS = 'selects';
@@ -31,11 +36,6 @@ class QueryBuilder
      * @var string Extra for andGroupBy()
      */
     const GROUP_BYS = 'groupBys';
-
-    /**
-     * @var string Used with the SELECTS extra to add joined entities into the main entity
-     */
-    const SELECT_JOIN = '__SELECT_JOIN__';
 
     /**
      * @var string For (x OR y OR ...)
