@@ -19,6 +19,12 @@ use Traversable;
 class EntityManager
 {
     /**
+     * @var array|null The default orderBy parameter
+     */
+    public static $DEFAULT_ORDER_BY = null;
+
+
+    /**
      * @var \Doctrine\ORM\EntityManagerInterface The Doctrine entity manager
      */
     protected $entityManager;
@@ -72,6 +78,10 @@ class EntityManager
      */
     public function findBy(array $conditions, array $orderBy = null, $limit = null, $offset = null, array $extras = array())
     {
+        if (null === $orderBy) {
+            $orderBy = static::$DEFAULT_ORDER_BY;
+        }
+
         return $this->getRepository()->getQueryBuilderFindBy($conditions, $orderBy, $limit, $offset, $extras)->getQuery()->getResult();
     }
 
@@ -86,6 +96,10 @@ class EntityManager
      */
     public function findLikeBy(array $conditions, array $orderBy = null, $limit = null, $offset = null)
     {
+        if (null === $orderBy) {
+            $orderBy = static::$DEFAULT_ORDER_BY;
+        }
+
         $likes = array(QueryBuilder::AND_WHERE => array());
         foreach ($conditions as $i => $condition) {
             $likes[QueryBuilder::AND_WHERE][] = array(QueryBuilder::WHERE_LIKE => array($i => $condition));
@@ -106,6 +120,10 @@ class EntityManager
      */
     public function findOneBy(array $conditions, array $orderBy = null, array $extras = array())
     {
+        if (null === $orderBy) {
+            $orderBy = static::$DEFAULT_ORDER_BY;
+        }
+
         return $this->getRepository()->getQueryBuilderFindBy($conditions, $orderBy, 1, null, $extras)->getQuery()->getOneOrNullResult();
     }
 
@@ -136,6 +154,10 @@ class EntityManager
      */
     public function findAll(array $orderBy = null)
     {
+        if (null === $orderBy) {
+            $orderBy = static::$DEFAULT_ORDER_BY;
+        }
+
         return $this->getRepository()->findBy([], $orderBy);
     }
 
