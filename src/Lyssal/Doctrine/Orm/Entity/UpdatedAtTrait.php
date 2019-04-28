@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Do not forget to add the `HasLifecycleCallbacks` annotation in your entity.
  *
+ * @deprecated Please find this functionality in the Lyssal entity bundle lyssal/entity-bundle
+ *
  * @ORM\HasLifecycleCallbacks()
  */
 trait UpdatedAtTrait

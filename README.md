@@ -8,11 +8,6 @@
 Read the [installation documentation](doc/Installation.md).
 
 
-## Traits for entities
-
-Read the [entity traits documentation](doc/EntityTraits.md).
-
-
 ## PhpDoc
 
 Execute :
