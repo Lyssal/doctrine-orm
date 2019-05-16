@@ -65,6 +65,16 @@ class EntityManager
         return $this->repository;
     }
 
+    /**
+     * Get the entity class.
+     *
+     * @return string The class
+     */
+    public function getClass(): string
+    {
+        return $this->class;
+    }
+
 
     /**
      * Get entities.
