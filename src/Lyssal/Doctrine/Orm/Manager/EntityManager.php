@@ -319,6 +319,16 @@ class EntityManager
     }
 
     /**
+     * Detach the entity.
+     *
+     * @param object $entity The entity
+     */
+    public function detach($entity)
+    {
+        $this->entityManager->detach($entity);
+    }
+
+    /**
      * Remove one or many entities (without flush).
      *
      * @param object|object[] $oneOrManyEntities One or many entities
