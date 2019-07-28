@@ -15,7 +15,7 @@ use Gedmo\Translatable\TranslatableListener;
 /**
  * A trait to use GedmoTranslatable functionalities with the EntityRepository.
  */
-class GedmoTranslatableTrait
+trait GedmoTranslatableTrait
 {
     /**
      * Get one translated result or NULL if not found.
