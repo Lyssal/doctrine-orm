@@ -15,7 +15,9 @@
         "lyssal/lib-php": "~0.2",
         "lyssal/entity": "~0.1"
     },
-    "autoload":     {
-        "psr-0": { "Lyssal\\Doctrine\\Orm": "src" }
+    "autoload": {
+        "psr-4": {
+            "Lyssal\\Doctrine\\Orm\\": "src/"
+        }
     }
 }
