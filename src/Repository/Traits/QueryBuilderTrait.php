@@ -181,6 +181,16 @@ trait QueryBuilderTrait
             }
         }
 
+        if (LyssalQueryBuilder::WHERE_NOT_LIKE === $conditionProperty) {
+            if (!is_array($conditionValue) || count($conditionValue) != 1) {
+                throw new OrmException('The condition value of an WHERE_NOT_LIKE must be an associative array with one value.');
+            }
+            foreach ($conditionValue as $likePropriete => $likeValeur) {
+                $conditionValueLabel = $this->addParameterInQueryBuilder($queryBuilder, $likeValeur);
+                return $this->getCompleteProperty($likePropriete).' NOT LIKE :'.$conditionValueLabel;
+            }
+        }
+
         if (LyssalQueryBuilder::WHERE_IN === $conditionProperty) {
             if (!is_array($conditionValue) || count($conditionValue) != 1) {
                 throw new OrmException('The condition value of an WHERE_IN must be an associative array with one value.');

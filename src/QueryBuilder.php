@@ -53,6 +53,11 @@ class QueryBuilder
     const WHERE_LIKE = '__LIKE__';
 
     /**
+     * @var string For a WHERE ... NOT LIKE ...
+     */
+    const WHERE_NOT_LIKE = '__NOT_LIKE__';
+
+    /**
      * @var string For a WHERE ... IN (...)
      */
     const WHERE_IN = '__IN__';
