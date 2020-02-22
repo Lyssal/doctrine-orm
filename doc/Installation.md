@@ -1,17 +1,7 @@
 # Installation
 
-## Install with Composer
-
-1. Update your `composer.json` :
-
-```json
-"require": {
-    "lyssal/doctrine-orm": "~x.y"
-}
-```
-
-2. Update with Composer :
+Install with Composer:
 
 ```sh
-composer update
+composer require lyssal/doctrine-orm
 ```
